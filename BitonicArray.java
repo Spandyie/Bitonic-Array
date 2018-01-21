@@ -20,15 +20,18 @@ public class BiotonicArray {
         int l = 0;
         int r = IntAr.length-1; 
         int m = max(IntAr);
-        if(val < IntAr[m]){
-        if( BinarySearchAsc(IntAr,0, m, val) != -1) return true; 
-        }
-        else if (val == IntAr[m]) return true;
+        int left,right;
+        
+        if (val == IntAr[m]) return true;
         else{
-        if( BinarySearchDsc(IntAr,m, IntAr.length-1, val) != -1) return true; 
+            left = BinarySearchAsc(IntAr, 0,m,val);
+            right = BinarySearchDsc(IntAr,m,r,val);
         }
-         
-        return false;
+        
+        if(left == -1 && right == -1) return false;
+        else return true;
+
+        
     }
  
     private static int BinarySearchAsc(int[] array, int l, int r, int val){
